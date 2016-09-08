@@ -6,9 +6,12 @@
 - titleless = (title = self.title) == '!'
 - hide_title = (titleless || (option? :notitle) || (option? :conceal))
 
+/ zwitis
+- zwiti = option? :zwiti
+
 - vertical_slides = find_by(context: :section) {|section| section.level == 2 }
 
-/ extracting block image attributes to find an image to use as a 
+/ extracting block image attributes to find an image to use as a
 / background_image attribute
 - data_background_image, data_background_size, data_background_repeat,
   data_background_transition = nil
@@ -61,7 +64,7 @@
     =content.chomp
   - else
     section(id=(titleless ? nil : @id)
-      class=roles
+      class=[roles, (zwiti ? "zwiti" : nil)]
       data-transition=(attr 'transition')
       data-transition-speed=(attr 'transition-speed')
       data-background-color=data_background_color
