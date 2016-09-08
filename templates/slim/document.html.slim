@@ -55,6 +55,8 @@ html lang=(attr :lang, 'en' unless attr? :nolang)
           link rel='stylesheet' href=normalize_web_path('asciidoctor-pygments.css', (attr :stylesdir, ''))
         - else
           style=Asciidoctor::Stylesheets.instance.pygments_stylesheet_data(attr 'pygments-style')
+    - when 'prism'
+      link rel='stylesheet' href='#{revealjsdir}/css/prism-o.css' 
     / For syntax highlighting
     - if attr? 'highlightjs-theme'
       link href=(attr 'highlightjs-theme') rel="stylesheet"
@@ -175,5 +177,6 @@ html lang=(attr :lang, 'en' unless attr? :nolang)
             { src: '#{revealjsdir}/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
         ]
       });
+    script src="#{revealjsdir}/lib/js/prism.js"
     - unless (docinfo_content = (docinfo :footer, '.html')).empty?
       =docinfo_content
